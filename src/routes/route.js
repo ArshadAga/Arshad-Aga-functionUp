@@ -1,18 +1,99 @@
 const express = require('express');
-const abc = require('../introduction/intro')
+// const abc = require('../introduction/intro')
 const router = express.Router();
 
-router.get('/test-me', function (req, res) {
-    console.log('My batch is', abc.name)
-    abc.printName()
-    res.send('My second ever api!')
-});
+// router.get('/test-me', function (req, res) {
+//     console.log('My batch is', abc.name)
+//     abc.printName()
+//     res.send('My second ever api!')
+// });
 
-router.get('/students', function (req, res){
-    console.log("The path params in the request are : ", req.params)
-    let students = ['Sabiha', 'Neha', 'Akash']
-    res.send(students)
+// router.get('/students', function (req, res){
+//     console.log("The path params in the request are : ", req.params)
+//     let students = ['Sabiha', 'Neha', 'Akash']
+//     res.send(students)
+// })
+
+router.get('/movies', function (req, res){
+    // req.params
+    const movies = ["Laal Singh Chadda", "Rakshabandhan", "Bhramhastra", "Kartikeya-2", "RRR"] //1st question solution
+    
+    res.send(movies)
+
 })
+router.get('/movies/:indexNumber', function (req, res){
+    let InParams =req.params
+    const movies = ["Laal Singh Chadda", "Rakshabandhan", "Bhramhastra", "Kartikeya-2", "RRR"]   //2nd question solution
+    
+    if(InParams.indexNumber>(movies.length-1)){
+        res.send('Error:Use Valid Index')
+    }
+    res.send(movies[InParams.indexNumber])
+
+})
+
+
+// router.get('/films', function (req,res){
+    
+//     const film=[ {
+//         id: 1,
+//         name: "The Shining"
+//        },
+//         {
+//         id: 2,
+//         name: "Incendies"
+//        }, {
+//         id: 3,
+//         name: "Rang de Basanti"
+//        }, {
+//         id: 4,
+//         name: "Finding Nemo"
+//        }]
+       
+//     res.send(film)
+// })
+
+
+router.get('/films', function(req,res){
+    let InParams = req.params
+    const film = [
+        {id: 1,
+         Name: "Laal Singh Chadda"},
+        {id: 2,
+        Name: "RakshaBandhan"},
+        {id: 3,
+        Name: "Bramhastra"},
+        {id: 4,
+        Name: "Kartikeya-2"},
+        {id: 5,
+        Name: "RRR"}
+    ]
+    res.send(film)
+})
+
+router.get('/films:filmId', function(req,res){
+    let InParams = req.params
+    const film = [
+        {id: 1,
+         Name: "Laal Singh Chadda"},
+        {id: 2,
+        Name: "RakshaBandhan"},
+        {id: 3,
+        Name: "Bramhastra"},
+        {id: 4,
+        Name: "Kartikeya-2"},
+        {id: 5,
+        Name: "RRR"}
+    ]
+    if(InParams.filmId>(film.length-1)){
+        res.send("No Movie Exist with this Id")
+    }
+    res.send(film[InParams.filmId])
+    
+})
+
+
+
 
 
 // Example 1 for path params
