@@ -130,4 +130,30 @@ router.post('/players', function (req, res) {
     }
 });
 
+
+router.get('/consecutiveNum', function(req, res){
+    let arre = [1,2,3,5,6,4,8]
+    let total = 0
+    for (var i in arre) {
+        total += arre[i]
+    }
+    let arr = arre.pop()
+    let consecutiveNum = arr*(arr+1)/2
+    let missingNum = consecutiveNum-total
+
+    res.send( { data : missingNum})
+})
+
+router.get('/consecutiveNum1', function(req, res){
+    let arre = [1,2,3,5,6,4,8]
+    let total = 0
+    for (var i in arre) {
+        total += arre[i]
+    }
+    let arr = arre.pop()
+    let consecutiveNum = arr*(arr+1)/2
+    let missingNum = consecutiveNum-total
+
+    res.send( { data : missingNum})
+})
 module.exports = router;
