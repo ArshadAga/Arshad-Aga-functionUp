@@ -54,14 +54,15 @@ const getBooksData= async function (req, res) {
     //     {  sales: {$gt: 10}  }, //condition
     //     { $set: { isPublished: true} } // the change that you want to make
     //     ) 
+    
 
 
 
     // REGEX
-    // let allBooks= await BookModel.find( { bookName:  /^Int/  }) 
-    // let allBooks= await BookModel.find( { bookName:  /^INT/i  }) 
-    // let allBooks= await BookModel.find( { bookName:  /5$/  }) 
-    // let allBooks= await BookModel.find( { bookName:  /.*Programming.*/i  }) 
+    // let allBooks= await BookModel.find( { bookName:  /^Int/  })   from the start search
+    // let allBooks= await BookModel.find( { bookName:  /^INT/i  })  from start and insensitive
+    // let allBooks= await BookModel.find( { bookName:  /5$/  })  from the end to search
+    // let allBooks= await BookModel.find( { bookName:  /.*Programming.*/i  })  from between search
     
     // ASYNC AWAIT
     
@@ -69,6 +70,9 @@ const getBooksData= async function (req, res) {
     a= a + 10
     console.log(a)
     let allBooks= await BookModel.find( )  //normally this is an asynchronous call..but await makes it synchronous
+//     let allBooks= await BookModel.updateMany( {  sales: {$gt: 10}  }, //condition
+//     { $set: { isPublished: true} } // the change that you want to make
+// //     ) 
 
 
     // WHEN AWAIT IS USED: - database + axios
