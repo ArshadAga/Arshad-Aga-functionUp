@@ -1,11 +1,16 @@
-const BookWithAuthorID = require('../models/bookModel')
+// const bookModel = require('../models/bookModel')
 
 
-const CBbooks = async function(req, res){
-    let data = res.body
-    
-}
+// const createBook= async function (req, res) {
+//     let data= req.body
 
+//     let savedData= await bookModel.BooksSection.create(data)
+//     res.send({msg: savedData})
+// }
+
+
+
+// module.exports.booksc = createBook
 
 
 // const { count } = require("console")
