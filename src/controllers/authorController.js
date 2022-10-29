@@ -29,18 +29,18 @@ const getUpdate= async function (req, res) {
     const id = book.author_id;
     const upBook= await BookModel.findOneAndUpdate( 
               { bookName: "Two states"} , 
-              { $set:{ price:1432} }, 
+              { $set:{ price:100} }, 
                { new: true , upsert: true} )
     const author= await AuthorModel.find({author_id : id }).select({author_name:1, _id :0})
       res.send({msg: upBook, name: author })
  }
  //--------costs between 50-100 -------
  const priceRange= async function (req, res) {
-    const book = await BookModel.find({price:{$gte:50, $lte :100}}).select({author_id:1, bookName:1, _id:0})
+    const book = await BookModel.find({price:{$gte:50, $lte :100}}).select({ bookName:1,author_id:1, _id:0})
     const authorlist = book.map(book=>book.author_id)
-    const author= await AuthorModel.find({author_id :{$in:authorlist}}).select({author_name:1, _id:0})
+    const author= await AuthorModel.find({author_id :{$in:authorlist}}).select({author_name:1,author_id:1, _id:0})
     
-    res.send({msg: book, aa:author})
+    res.send({msg: book, author})
 }
 module.exports.priceRange= priceRange
 module.exports.createAuthor= createAuthor

@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 const booksSchema = new mongoose.Schema( {
     
     bookName :String,
-    author_id :Number,
+    author_id:{
+        type : Number,
+        unique : true,
+        required: true
+    },
     price :Number,
     ratings:Number,
 
