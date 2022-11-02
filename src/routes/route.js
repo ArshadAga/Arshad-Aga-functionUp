@@ -13,11 +13,11 @@ router.get("/test-me", function (req, res) {
 
 
 router.post("/createBook", BookController.createBook  )
-const middleware = require("../middlewares/AssignmentMiddlewares")
+// const middleware = require("../middlewares/AssignmentMiddlewares")
 
-router.get("/middlewaretester" ,function (req,res){
-    res.send("MiddleWare Testing In Progress")
-})
+// router.get("/middlewaretester" ,function (req,res){
+//     res.send("MiddleWare Testing In Progress")
+// })
 
 
 
@@ -53,15 +53,15 @@ router.get("/middlewaretester" ,function (req,res){
 
 
 
-router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
+// router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
 
 
 
 // router.get("/basicRoute2", commonMW.mid1, UserController.basicCode2)
 // router.get("/basicRoute3", commonMW.mid2, UserController.basicCode3)
 // router.get("/basicRoute4", commonMW.mid1, commonMW.mid4, UserController.basicCode4)
-
-
+const testing = require('../middlewares/commonMiddlewares')
+router.get('/middleware_testing', testing )
 
 
 module.exports = router;
