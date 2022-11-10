@@ -1,79 +1,48 @@
-# TOPIC: Middleware2
-
-## Request
-- Access headers
-- Set headers
-- Set attributes
-
-## Response 
-- Set headers
-- Get headers
-
-## Assignment
-
-TOPIC: Middleware2
-
-- For this assignment you have to create a new branch - assignment/middleware2
-- Your user document should look like this
-```
-{ 
-    _id: ObjectId("61951bfa4d9fe0d34da86829"),
-    name: "Sabiha Khan",
-	balance:100, // Default balance at user registration is 100
-	address:"New delhi",
-	age: 90,
- 	gender: “female” // Allowed values are - “male”, “female”, “other”
-	isFreeAppUser: false // Default false value.
-}
-```
-
-- Your product document should look like this
-```
-{
-	_id: ObjectId("61951bfa4d9fe0d34da86344"),
-	name:"Catcher in the Rye",
-	category:"book",
-	price:70 //mandatory property
-}
-```
-
-Your Order document looks like this.
-```
-{
-	_id: ObjectId("61951bfa4d9fe0d34da86344"),
-	userId: “61951bfa4d9fe0d34da86829”,
-	productId: “61951bfa4d9fe0d34da86344”
-	amount: 0,
-	isFreeAppUser: true, 
-	date: “22/11/2021”
-}
-```
+# Promise has typically 3 states
+- Pending : not awaited and hence has not completed yet ( e.g. typically when you dont await an axios or db call)
+- Rejected: When promise failed ( wrong url | server down etc)
+- Fulfilled: Promise completed succesfully (e.g. db call has completed and returned a result succesfully)
+// - settled : referes to a combination of either rejhected or fulfilled
 
 
-NOTE: In some of the below apis a header validation is to be performed (create user and create order). The name of the header is ‘isFreeAppUser’. Write a header validation that simply checks whether this header is present or not. Please note this validation should only be called in create user and create order apis. Perform this validation in a middleware.
-
-- Write a POST api to create a product from the product details in request body. 
-- Write a POST api to create a user that takes user details from the request body. If the header **isFreeAppUser** is not present terminate the request response cycle with an error message that the request is missing a mandatory header. The value of field isFreeAppUser is determined by **isFreeAppUser** request header.
-- Write a POST api for order purchase that takes a userId and a productId in request body. 
-If the header **isFreeAppUser** is not present terminate the request response cycle with an error message that the request is missing a mandatory header
-If the header is present the control goes to the request handler. Perform the user and product validation. Check if the user exists as well as whether the product exists. Return an error with a suitable error message if either of these validations fail
-For every purchase we save an order document in the orders collection. isFreeAppUser property in an Order document depends on the header **isFreeAppUser**. If the **isFreeAppUser** header is true then the balance of the user is not deducted and the amount in order is set to 0 as well the attribute in order **isFreeAppUser** is set to true. If this header has a false value then the product’s price is checked. This value is deducted from the user’s balance and the order amount is set to the product’s price as well as the attrbiute **isFreeAppUser** is set to false in order document.
-- Update the logic in middleware to set the **isFreeAppUser** attribute in req. Use this attribute in the route handler for setting the isFreeAppUser attributes of User and Order collection. 
-
-### Hints for problem 3
-
-1. Validate the header in a middleware. Terminate the req-res cycle if this fails.
-2. Validate the userId. Send error if userId is invalid
-3. Validate the productId. Send the error if productId is invalid
-4. Now write the logic for order creation. 3 scenarios
-- //Scenario 1
-For paid user app and the user has sufficient balance. We deduct the balance from user's balance and update the user. We create an order document
-
-- //Scenaio 2
-For paid app user and the user has insufficient balance. We send an error that the user doesn't have enough balance
-
-- //Scenario 3
-For free app user, we dont check user's balance and create the order with 0 amount.
+# What is a promise:
+- layman's definition: It is something in JS that tells us whether an operation has completed or not (pending)
+- technical definition: it is a JS object that represents whether an asynchronous operation(like db or axios call) is completed or not
 
 
 
+
+
+// GIT link..go thourgh this code thoroughly..it will result in a confusion when you are going though the code- postman se hit kar rhe hai and same axios se bhi hit kar rhe hai ..why?
+// a short video ..4-5 mins  summary on what we covered today
+// An asignment :
+1.  WRITE A GET API TO GET THE LIST OF ALL THE "vaccination sessions by district id" for any given district id and for any given date
+2.  GOTO  http://api.openweathermap.org => “subscribe” current weather data ==> get api key for Free version ==> create new account and Verify your emailId( Must verify to avoid issues) => go to My APi keys under your account name(top right corner) or https://home.openweathermap.org/api_keys => save the key/appid somewhere. Now proceed further
+Create API's to do each of the following:
+                    - get weather of London from http://api.openweathermap.org/data/2.5/weather?q=London&appid=<useYourOwnAppId>  (NOTE: must use HTTP infront of the url else axios will attempt to hit localhost and give error  ..also use HTTP only and not HTTPS)
+                    - then change the above to get the temperature only( of London)
+                    - Sort the cities  ["Bengaluru","Mumbai", "Delhi", "Kolkata", "Chennai", "London", "Moscow"] in order of their increasing temperature
+                    result should look something like this
+                    [
+                    {city:"London", temp: 280},
+                    {city:"Moscow", temp: 290},
+                    {city:"Bangalore", temp: 301.2},
+                    .......
+                    ]
+
+3. Axios POST request assignment
+
+            1. Get all the memes at Postman (https://api.imgflip.com/get_memes)
+            2. Pick a memeId you want (Eg 129242436) for the POST request
+            3. Create a Post request (https://api.imgflip.com/caption_image) with only query params. Following are the params (copy username and password exactly as given below):
+            template_id <meme_id>
+            text0 <text you want as a caption>
+            text1 <optional>
+            username chewie12345
+            password meme@123
+
+            4. Return a response with a body like this
+            "data": {
+                    "url": "https://i.imgflip.com/5mvxax.jpg",
+                    "page_url": "https://imgflip.com/i/5mvxax"
+                }
