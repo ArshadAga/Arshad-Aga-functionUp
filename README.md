@@ -1,4 +1,4 @@
-#Uranium
+#Lithium
 ## Project - Products Management
 
 ### Key points
